@@ -1,0 +1,12 @@
+{
+  "case_id": "case_04_redflag_infection",
+  "title": "Red flag: unhealed residual limb with active infection",
+  "referral_text": "Patient P-4120, 58-year-old male, 132 kg, 175 cm. Left transtibial amputation 5 weeks ago due to diabetic foot infection. The distal suture line still has a 2 cm area of dehiscence with purulent discharge; patient is on oral antibiotics. Type 2 diabetes poorly controlled (HbA1c 9.4%), chronic kidney disease stage 3, ischaemic heart disease with limited exercise tolerance. Before amputation walked only within the home. Goal: transfer and short indoor walking. Family requests prosthetic fitting as soon as possible.",
+  "expected": {
+    "amputation_level": "transtibial",
+    "k_level": "K1",
+    "device_type": "transtibial_prosthesis",
+    "verdict": "escalate",
+    "red_flags": ["active infection / wound dehiscence", "poorly controlled diabetes", "weight above standard component rating"]
+  }
+}

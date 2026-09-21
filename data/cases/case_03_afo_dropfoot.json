@@ -1,0 +1,12 @@
+{
+  "case_id": "case_03_afo_dropfoot",
+  "title": "Orthotic case: flaccid drop foot after peroneal nerve injury",
+  "referral_text": "Patient P-3305, 46-year-old male, 90 kg, 183 cm. No amputation. Right foot drop following common peroneal nerve injury after a knee dislocation 4 months ago. Flaccid dorsiflexor weakness (MRC 1/5), no spasticity, ankle passively mobile with full range, no medio-lateral instability. Knee stable after surgical repair, quadriceps 5/5. Walks unlimited distances, works as a warehouse supervisor on his feet all day, wants to jog again. No comorbidities.",
+  "expected": {
+    "amputation_level": "none",
+    "k_level": "K3",
+    "device_type": "afo",
+    "afo_class": "carbon dynamic",
+    "verdict": "approved"
+  }
+}

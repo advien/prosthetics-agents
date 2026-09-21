@@ -1,0 +1,467 @@
+<!doctype html>
+<title>Prosthetics Agent Blueprints</title>
+<style>
+  :root{
+    --bg:#f5f3ee;
+    --surface:#ffffff;
+    --surface-2:#ecebe2;
+    --ink:#20242c;
+    --ink-dim:#666c78;
+    --line:#d9d6cb;
+    --accent-b:#1f7a72;
+    --accent-c:#a8641f;
+    --accent-a:#a8324a;
+    --font-body:'IBM Plex Sans', system-ui, sans-serif;
+    --font-mono:'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#14171c;
+      --surface:#1b1f26;
+      --surface-2:#20242c;
+      --ink:#e9e7df;
+      --ink-dim:#9aa0ac;
+      --line:#2c313b;
+      --accent-b:#4fb3a9;
+      --accent-c:#d68a45;
+      --accent-a:#e0637a;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#14171c;
+    --surface:#1b1f26;
+    --surface-2:#20242c;
+    --ink:#e9e7df;
+    --ink-dim:#9aa0ac;
+    --line:#2c313b;
+    --accent-b:#4fb3a9;
+    --accent-c:#d68a45;
+    --accent-a:#e0637a;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.55;
+  }
+  main{
+    max-width:840px;
+    margin:0 auto;
+    padding:56px 24px 96px;
+  }
+  header{
+    margin-bottom:48px;
+  }
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    margin:0 0 10px;
+  }
+  h1{
+    font-size:clamp(28px,4vw,38px);
+    margin:0 0 14px;
+    text-wrap:balance;
+    font-weight:600;
+  }
+  header p{
+    max-width:62ch;
+    color:var(--ink-dim);
+    font-size:15.5px;
+    margin:0;
+  }
+  .status{
+    margin-top:20px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--ink-dim);
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:6px 10px;
+    background:var(--surface);
+  }
+  .status::before{
+    content:"";
+    width:6px;height:6px;border-radius:50%;
+    background:var(--ink-dim);
+    flex:none;
+  }
+
+  section.stage{
+    margin-top:64px;
+    padding-top:40px;
+    border-top:1px solid var(--line);
+  }
+  section.overview{
+    margin-top:0;
+    padding-top:0;
+    border-top:none;
+  }
+  .stage-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:6px;
+  }
+  .stage-letter{
+    font-family:var(--font-mono);
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.04em;
+    color:var(--stage-accent, var(--ink-dim));
+    border:1px solid var(--stage-accent, var(--line));
+    border-radius:3px;
+    padding:2px 8px;
+    flex:none;
+  }
+  h2{
+    font-size:20px;
+    margin:0;
+    font-weight:600;
+  }
+  .stage p.desc{
+    max-width:66ch;
+    color:var(--ink-dim);
+    font-size:14.5px;
+    margin:10px 0 24px;
+  }
+
+  figure{
+    margin:0;
+  }
+  .diagram{
+    background:var(--surface-2);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:18px 16px;
+    overflow-x:auto;
+    color:var(--ink);
+  }
+  .diagram svg{
+    display:block;
+    width:100%;
+    height:auto;
+    min-width:640px;
+  }
+  .diagram text{
+    font-family:var(--font-mono);
+  }
+  figcaption{
+    margin-top:10px;
+    font-size:13px;
+    color:var(--ink-dim);
+  }
+
+  .roster{
+    margin-top:20px;
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+    background:var(--surface);
+  }
+  .roster-row{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:16px;
+    padding:10px 14px;
+    font-size:13.5px;
+  }
+  .roster-row + .roster-row{
+    border-top:1px solid var(--line);
+  }
+  .roster-row dt{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    color:var(--stage-accent, var(--ink));
+  }
+  .roster-row dd{
+    margin:0;
+    color:var(--ink-dim);
+  }
+
+  footer{
+    margin-top:64px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    font-size:13px;
+    color:var(--ink-dim);
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<main>
+  <header>
+    <p class="eyebrow">Multi-agent architecture &middot; sequence B &rarr; C &rarr; A</p>
+    <h1>Prosthetics agent blueprints</h1>
+    <p>Block diagrams for the three-stage project: a clinical fitting assistant (B), a fabrication-pipeline orchestrator (C), and a real-time prosthetic control loop (A) &mdash; three separate multi-agent systems that share one message-logging spine.</p>
+    <p class="status">working schematics &mdash; revised as scope changes, redrawn as a single figure at project completion</p>
+  </header>
+
+  <section class="overview">
+    <div class="stage-head"><span class="stage-letter">overview</span><h2>How the three projects relate</h2></div>
+    <p class="desc">B and C are one continuous pipeline &mdash; a device recommendation from B becomes the input spec for C. A runs on a different timescale with different data (sensor ticks, not patient records) and stays a separate module. All three write to the same event log, which is what actually makes this "one project" rather than three unrelated demos.</p>
+    <figure>
+      <div class="diagram">
+        <svg viewBox="0 0 880 210" role="img" aria-label="B and C are connected by a solid arrow forming one pipeline; A sits apart with no direct arrow to C; all three connect with dashed lines down to a shared message log and event bus.">
+          <defs>
+            <marker id="ov-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 z" fill="currentColor"/>
+            </marker>
+          </defs>
+          <rect x="40" y="28" width="200" height="72" rx="3" fill="var(--surface)" stroke="var(--accent-b)" stroke-width="1.5"/>
+          <text x="140" y="58" text-anchor="middle" font-size="13" font-weight="600" fill="var(--accent-b)">B &mdash; clinical fitting</text>
+          <text x="140" y="76" text-anchor="middle" font-size="11" fill="var(--ink-dim)">intake &rarr; recommendation</text>
+
+          <rect x="330" y="28" width="220" height="72" rx="3" fill="var(--surface)" stroke="var(--accent-c)" stroke-width="1.5"/>
+          <text x="440" y="58" text-anchor="middle" font-size="13" font-weight="600" fill="var(--accent-c)">C &mdash; fabrication</text>
+          <text x="440" y="76" text-anchor="middle" font-size="11" fill="var(--ink-dim)">scan &rarr; CAD &rarr; QA</text>
+
+          <rect x="620" y="28" width="220" height="72" rx="3" fill="var(--surface)" stroke="var(--accent-a)" stroke-width="1.5"/>
+          <text x="730" y="58" text-anchor="middle" font-size="13" font-weight="600" fill="var(--accent-a)">A &mdash; real-time control</text>
+          <text x="730" y="76" text-anchor="middle" font-size="11" fill="var(--ink-dim)">sensors &rarr; actuation</text>
+
+          <line x1="240" y1="64" x2="326" y2="64" stroke="currentColor" stroke-width="1.5" marker-end="url(#ov-arrow)"/>
+          <text x="285" y="54" text-anchor="middle" font-size="10.5" fill="var(--ink-dim)">device spec</text>
+
+          <rect x="270" y="152" width="340" height="38" rx="3" fill="var(--surface)" stroke="var(--ink-dim)" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="440" y="176" text-anchor="middle" font-size="11.5" fill="var(--ink-dim)">shared message log / event bus</text>
+
+          <line x1="140" y1="100" x2="140" y2="130" stroke="var(--ink-dim)" stroke-width="1" stroke-dasharray="2 3"/>
+          <line x1="140" y1="130" x2="365" y2="130" stroke="var(--ink-dim)" stroke-width="1" stroke-dasharray="2 3"/>
+          <line x1="365" y1="130" x2="365" y2="150" stroke="var(--ink-dim)" stroke-width="1" stroke-dasharray="2 3"/>
+
+          <line x1="440" y1="100" x2="440" y2="150" stroke="var(--ink-dim)" stroke-width="1" stroke-dasharray="2 3"/>
+
+          <line x1="730" y1="100" x2="730" y2="130" stroke="var(--ink-dim)" stroke-width="1" stroke-dasharray="2 3"/>
+          <line x1="730" y1="130" x2="530" y2="130" stroke="var(--ink-dim)" stroke-width="1" stroke-dasharray="2 3"/>
+          <line x1="530" y1="130" x2="530" y2="150" stroke="var(--ink-dim)" stroke-width="1" stroke-dasharray="2 3"/>
+        </svg>
+      </div>
+      <figcaption>No arrow connects C to A directly &mdash; that gap is deliberate: A is a separate module, tied to the rest of the project only through shared logging, not shared state.</figcaption>
+    </figure>
+  </section>
+
+  <section class="stage" style="--stage-accent:var(--accent-b)">
+    <div class="stage-head"><span class="stage-letter">stage B</span><h2>Clinical fitting assistant</h2></div>
+    <p class="desc">A patient-record object is threaded through four agents. The recommendation never reaches documentation directly &mdash; it must clear a review agent first, which can escalate to a clinician instead of passing it on.</p>
+    <figure>
+      <div class="diagram">
+        <svg viewBox="0 0 980 360" role="img" aria-label="Intake, biomechanical analysis and recommendation agents run in sequence, each reading and writing one shared patient record. The safety and review agent can send the recommendation back to the recommendation agent with required changes, bounded to two revision attempts. Once the safety agent reaches a verdict of approved or escalated, the record always proceeds to the documentation agent, which produces a document either way; on escalation the safety agent additionally notifies the human clinical team and the document includes an escalation note.">
+          <defs>
+            <marker id="b-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 z" fill="currentColor"/>
+            </marker>
+            <marker id="b-arrow-accent" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 z" fill="var(--accent-b)"/>
+            </marker>
+            <marker id="b-arrow-dim" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 z" fill="var(--ink-dim)"/>
+            </marker>
+          </defs>
+
+          <rect x="20" y="40" width="140" height="64" rx="3" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/>
+          <text x="90" y="66" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Intake</text>
+          <text x="90" y="82" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Agent</text>
+
+          <rect x="190" y="40" width="150" height="64" rx="3" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/>
+          <text x="265" y="66" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Biomechanical</text>
+          <text x="265" y="82" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Analysis Agent</text>
+
+          <rect x="370" y="40" width="160" height="64" rx="3" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/>
+          <text x="450" y="66" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Recommendation</text>
+          <text x="450" y="82" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Agent</text>
+
+          <rect x="560" y="40" width="160" height="64" rx="3" fill="var(--surface)" stroke="var(--accent-b)" stroke-width="1.5"/>
+          <text x="640" y="66" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--accent-b)">Safety / Review</text>
+          <text x="640" y="82" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--accent-b)">Agent</text>
+
+          <rect x="790" y="40" width="170" height="64" rx="3" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/>
+          <text x="875" y="66" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Documentation</text>
+          <text x="875" y="82" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Agent</text>
+
+          <line x1="160" y1="72" x2="186" y2="72" stroke="currentColor" stroke-width="1.5" marker-end="url(#b-arrow)"/>
+          <line x1="340" y1="72" x2="366" y2="72" stroke="currentColor" stroke-width="1.5" marker-end="url(#b-arrow)"/>
+          <line x1="530" y1="72" x2="556" y2="72" stroke="currentColor" stroke-width="1.5" marker-end="url(#b-arrow)"/>
+          <line x1="720" y1="72" x2="786" y2="72" stroke="currentColor" stroke-width="1.5" marker-end="url(#b-arrow)"/>
+
+          <text x="175" y="118" text-anchor="middle" font-size="10.5" fill="var(--ink-dim)">structured profile</text>
+          <text x="355" y="118" text-anchor="middle" font-size="10.5" fill="var(--ink-dim)">biomechanical reqs.</text>
+          <text x="545" y="118" text-anchor="middle" font-size="10.5" fill="var(--ink-dim)">recommendation</text>
+          <text x="753" y="118" text-anchor="middle" font-size="10.5" fill="var(--ink-dim)">verdict</text>
+
+          <line x1="20" y1="130" x2="960" y2="130" stroke="var(--ink-dim)" stroke-width="1" stroke-dasharray="2 3"/>
+          <text x="20" y="145" font-size="10.5" fill="var(--ink-dim)">patient record &mdash; shared state, read/write per agent</text>
+
+          <polyline points="600,104 600,200 450,200 450,104" fill="none" stroke="var(--accent-b)" stroke-width="1.5" marker-end="url(#b-arrow-accent)"/>
+          <text x="525" y="192" text-anchor="middle" font-size="10.5" fill="var(--accent-b)">revise, bounded</text>
+
+          <line x1="700" y1="104" x2="700" y2="252" stroke="var(--ink-dim)" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#b-arrow-dim)"/>
+          <text x="710" y="180" font-size="10.5" fill="var(--ink-dim)">escalate: red flag / budget exhausted</text>
+
+          <rect x="615" y="256" width="170" height="50" rx="3" fill="none" stroke="var(--ink-dim)" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="700" y="286" text-anchor="middle" font-size="12" fill="var(--ink-dim)">Clinical Team</text>
+
+          <text x="700" y="330" text-anchor="middle" font-size="9.5" fill="var(--ink-dim)">documentation still runs, with an escalation note</text>
+        </svg>
+      </div>
+      <figcaption>The safety gate is the only path to documentation &mdash; it can bounce the recommendation back for up to two revisions, but every run still ends in a document; escalation adds a note and a clinical-team notification, it doesn't skip documentation.</figcaption>
+    </figure>
+    <dl class="roster">
+      <div class="roster-row"><dt>Intake Agent</dt><dd>turns free-text history into a structured patient profile &mdash; amputation level, K-level activity, lifestyle, comorbidities.</dd></div>
+      <div class="roster-row"><dt>Biomechanical Analysis</dt><dd>derives load, range-of-motion and gait requirements from the profile.</dd></div>
+      <div class="roster-row"><dt>Recommendation Agent</dt><dd>matches requirements against a component catalog and drafts a device recommendation; reapplies the safety agent's required changes on revision.</dd></div>
+      <div class="roster-row"><dt>Safety / Review Agent</dt><dd>deterministically checks component ratings and red flags; approves, sends back for revision (bounded, default 2 attempts), or escalates to the clinical team.</dd></div>
+      <div class="roster-row"><dt>Documentation Agent</dt><dd>always writes the clinical document &mdash; adds an escalation note and states no fitting proceeds when the gate escalated.</dd></div>
+    </dl>
+  </section>
+
+  <section class="stage" style="--stage-accent:var(--accent-c)">
+    <div class="stage-head"><span class="stage-letter">stage C</span><h2>Fabrication orchestrator</h2></div>
+    <p class="desc">Picks up where B's recommendation ends and carries it to a production-ready file. The QA agent can reject geometry and send it back upstream &mdash; the loop over the top of the diagram is the mechanism that matters here, not the straight-line pipeline.</p>
+    <figure>
+      <div class="diagram">
+        <svg viewBox="0 0 900 270" role="img" aria-label="A device spec from stage B flows through scan processing, CAD generation, manufacturing scheduling and QA agents. The QA agent can loop back over the top to send the CAD generation agent a revise instruction when geometry fails tolerance.">
+          <defs>
+            <marker id="c-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 z" fill="currentColor"/>
+            </marker>
+            <marker id="c-arrow-accent" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 z" fill="var(--accent-c)"/>
+            </marker>
+          </defs>
+
+          <rect x="20" y="80" width="120" height="64" rx="3" fill="none" stroke="var(--ink-dim)" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="80" y="108" text-anchor="middle" font-size="11.5" fill="var(--ink-dim)">device spec</text>
+          <text x="80" y="124" text-anchor="middle" font-size="11.5" fill="var(--ink-dim)">(from stage B)</text>
+
+          <rect x="165" y="80" width="140" height="64" rx="3" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/>
+          <text x="235" y="106" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Scan Processing</text>
+          <text x="235" y="122" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Agent</text>
+
+          <rect x="330" y="80" width="150" height="64" rx="3" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/>
+          <text x="405" y="106" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">CAD Generation</text>
+          <text x="405" y="122" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Agent</text>
+
+          <rect x="505" y="80" width="160" height="64" rx="3" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/>
+          <text x="585" y="106" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Manufacturing</text>
+          <text x="585" y="122" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Scheduling Agent</text>
+
+          <rect x="690" y="80" width="150" height="64" rx="3" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/>
+          <text x="765" y="106" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">QA Agent</text>
+
+          <line x1="140" y1="112" x2="161" y2="112" stroke="currentColor" stroke-width="1.5" marker-end="url(#c-arrow)"/>
+          <line x1="305" y1="112" x2="326" y2="112" stroke="currentColor" stroke-width="1.5" marker-end="url(#c-arrow)"/>
+          <line x1="480" y1="112" x2="501" y2="112" stroke="currentColor" stroke-width="1.5" marker-end="url(#c-arrow)"/>
+          <line x1="665" y1="112" x2="686" y2="112" stroke="currentColor" stroke-width="1.5" marker-end="url(#c-arrow)"/>
+
+          <text x="233" y="164" text-anchor="middle" font-size="10" fill="var(--ink-dim)">raw mesh</text>
+          <text x="403" y="164" text-anchor="middle" font-size="10" fill="var(--ink-dim)">landmarked geometry</text>
+          <text x="583" y="164" text-anchor="middle" font-size="10" fill="var(--ink-dim)">parametric model</text>
+
+          <polyline points="765,76 765,30 405,30 405,76" fill="none" stroke="var(--accent-c)" stroke-width="1.5" marker-end="url(#c-arrow-accent)"/>
+          <text x="585" y="19" text-anchor="middle" font-size="10.5" fill="var(--accent-c)">tolerance fail &rarr; revise geometry</text>
+
+          <rect x="690" y="196" width="160" height="50" rx="3" fill="none" stroke="var(--ink-dim)" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="770" y="217" text-anchor="middle" font-size="11.5" fill="var(--ink-dim)">production-ready</text>
+          <text x="770" y="232" text-anchor="middle" font-size="11.5" fill="var(--ink-dim)">file</text>
+          <line x1="765" y1="144" x2="765" y2="192" stroke="currentColor" stroke-width="1.5" marker-end="url(#c-arrow)"/>
+        </svg>
+      </div>
+      <figcaption>The revise loop runs over the top of the pipeline &mdash; geometry can bounce between QA and CAD generation any number of times before a file ships.</figcaption>
+    </figure>
+    <dl class="roster">
+      <div class="roster-row"><dt>Scan Processing</dt><dd>cleans the raw 3D scan of the residual limb and extracts landmarks (via mesh processing).</dd></div>
+      <div class="roster-row"><dt>CAD Generation</dt><dd>parametrically builds socket/component geometry from landmarks and the device spec.</dd></div>
+      <div class="roster-row"><dt>Manufacturing Scheduling</dt><dd>plans print/mill steps and toolpaths for the generated geometry.</dd></div>
+      <div class="roster-row"><dt>QA Agent</dt><dd>checks geometric tolerances; fails bad geometry back to CAD generation instead of passing it downstream.</dd></div>
+    </dl>
+  </section>
+
+  <section class="stage" style="--stage-accent:var(--accent-a)">
+    <div class="stage-head"><span class="stage-letter">stage A</span><h2>Real-time prosthetic control</h2></div>
+    <p class="desc">Two loops at two speeds: a per-tick control path where the safety supervisor sits directly on the command line, and a per-session adaptation loop that retunes intent recognition offline from logged outcomes.</p>
+    <figure>
+      <div class="diagram">
+        <svg viewBox="0 0 920 320" role="img" aria-label="A fast per-tick path runs from sensor fusion through intent recognition and motion planning to a safety supervisor, which either passes the command to the actuator or clamps it to a safe-hold state. A slow per-session loop separately carries actuator logs down to an adaptation agent, which feeds an updated intent model back up to the intent recognition agent.">
+          <defs>
+            <marker id="a-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 z" fill="currentColor"/>
+            </marker>
+            <marker id="a-arrow-accent" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 z" fill="var(--accent-a)"/>
+            </marker>
+            <marker id="a-arrow-dim" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 z" fill="var(--ink-dim)"/>
+            </marker>
+          </defs>
+
+          <text x="20" y="28" font-size="10.5" fill="var(--ink-dim)">fast path &mdash; per tick (ms)</text>
+
+          <rect x="20" y="40" width="150" height="64" rx="3" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/>
+          <text x="95" y="66" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Sensor-Fusion</text>
+          <text x="95" y="82" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Agent</text>
+
+          <rect x="200" y="40" width="170" height="64" rx="3" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/>
+          <text x="285" y="66" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Intent-Recognition</text>
+          <text x="285" y="82" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Agent</text>
+
+          <rect x="400" y="40" width="170" height="64" rx="3" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/>
+          <text x="485" y="66" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Motion-Planning</text>
+          <text x="485" y="82" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Agent</text>
+
+          <rect x="600" y="40" width="170" height="64" rx="3" fill="var(--surface)" stroke="var(--accent-a)" stroke-width="1.5"/>
+          <text x="685" y="66" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--accent-a)">Safety-Supervisor</text>
+          <text x="685" y="82" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--accent-a)">Agent</text>
+
+          <rect x="810" y="48" width="95" height="48" rx="3" fill="none" stroke="var(--ink-dim)" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="857" y="76" text-anchor="middle" font-size="11.5" fill="var(--ink-dim)">Actuator</text>
+
+          <line x1="170" y1="72" x2="196" y2="72" stroke="currentColor" stroke-width="1.5" marker-end="url(#a-arrow)"/>
+          <line x1="370" y1="72" x2="396" y2="72" stroke="currentColor" stroke-width="1.5" marker-end="url(#a-arrow)"/>
+          <line x1="570" y1="72" x2="596" y2="72" stroke="currentColor" stroke-width="1.5" marker-end="url(#a-arrow)"/>
+          <line x1="770" y1="72" x2="806" y2="72" stroke="var(--accent-a)" stroke-width="1.5" marker-end="url(#a-arrow-accent)"/>
+          <text x="788" y="60" text-anchor="middle" font-size="10" fill="var(--accent-a)">pass</text>
+
+          <rect x="600" y="164" width="170" height="50" rx="3" fill="none" stroke="var(--accent-a)" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="685" y="185" text-anchor="middle" font-size="11.5" fill="var(--accent-a)">Safe-Hold</text>
+          <text x="685" y="200" text-anchor="middle" font-size="11.5" fill="var(--accent-a)">command</text>
+          <line x1="685" y1="104" x2="685" y2="160" stroke="var(--accent-a)" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#a-arrow-accent)"/>
+          <text x="740" y="135" text-anchor="middle" font-size="10" fill="var(--accent-a)">clamp / override</text>
+
+          <text x="20" y="248" font-size="10.5" fill="var(--ink-dim)">slow loop &mdash; per session (offline)</text>
+          <rect x="190" y="258" width="190" height="56" rx="3" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/>
+          <text x="285" y="282" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">Adaptation Agent</text>
+          <text x="285" y="298" text-anchor="middle" font-size="10.5" fill="var(--ink-dim)">learns per-user patterns</text>
+
+          <polyline points="857,96 857,286 384,286" fill="none" stroke="var(--ink-dim)" stroke-width="1.5" stroke-dasharray="2 3" marker-end="url(#a-arrow-dim)"/>
+          <text x="650" y="278" text-anchor="middle" font-size="10.5" fill="var(--ink-dim)">session logs</text>
+
+          <line x1="285" y1="258" x2="285" y2="108" stroke="var(--ink-dim)" stroke-width="1.5" stroke-dasharray="2 3" marker-end="url(#a-arrow-dim)"/>
+          <text x="300" y="187" font-size="10.5" fill="var(--ink-dim)">updated intent model</text>
+        </svg>
+      </div>
+      <figcaption>The supervisor sits on the command line, not beside it &mdash; every motion command passes through it, and it can substitute a safe-hold command instead of forwarding one.</figcaption>
+    </figure>
+    <dl class="roster">
+      <div class="roster-row"><dt>Sensor-Fusion</dt><dd>combines synthetic EMG/IMU streams into a single state estimate.</dd></div>
+      <div class="roster-row"><dt>Intent-Recognition</dt><dd>maps the state estimate to a candidate motion intent.</dd></div>
+      <div class="roster-row"><dt>Motion-Planning</dt><dd>turns intent into an actuator command trajectory.</dd></div>
+      <div class="roster-row"><dt>Safety-Supervisor</dt><dd>validates every command before it reaches the actuator; substitutes a safe-hold command on failure.</dd></div>
+      <div class="roster-row"><dt>Adaptation Agent</dt><dd>reviews session logs offline and updates the intent model between sessions, not within one.</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    Source plan: <code>melodic-weaving-cook.md</code>. These are working schematics, not final figures &mdash; redraw the affected diagram whenever a stage's agent list or handoffs change, and assemble the polished version once B, C and A are settled.
+  </footer>
+</main>

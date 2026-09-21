@@ -1,0 +1,39 @@
+{
+  "_note": "Simplified, generic component catalog for a research prototype. Not a product list. K-levels follow the Medicare Functional Classification Level scale (K0-K4).",
+  "components": [
+    {"id": "FT-SACH", "category": "foot", "name": "SACH foot (solid ankle, cushion heel)", "k_min": "K1", "k_max": "K2", "weight_limit_kg": 125, "tags": ["low-cost", "durable", "indoor"], "notes": "Fixed ankle; shock absorption via heel cushion. Suitable for limited household ambulators."},
+    {"id": "FT-SAX", "category": "foot", "name": "Single-axis foot", "k_min": "K1", "k_max": "K2", "weight_limit_kg": 125, "tags": ["knee-stability"], "notes": "Plantarflexion at ankle improves knee stability in early stance; useful for transfemoral K1-K2."},
+    {"id": "FT-MAX", "category": "foot", "name": "Multi-axial foot", "k_min": "K2", "k_max": "K3", "weight_limit_kg": 125, "tags": ["uneven-terrain"], "notes": "Inversion/eversion accommodates uneven ground."},
+    {"id": "FT-ESAR", "category": "foot", "name": "Energy-storing (dynamic response) carbon foot", "k_min": "K3", "k_max": "K4", "weight_limit_kg": 125, "tags": ["community", "variable-cadence"], "notes": "Carbon keel returns energy at push-off; for variable-cadence community ambulators."},
+    {"id": "FT-ESAR-HD", "category": "foot", "name": "Energy-storing carbon foot, heavy-duty", "k_min": "K3", "k_max": "K4", "weight_limit_kg": 166, "tags": ["community", "heavy-duty"], "notes": "Reinforced keel for users above 125 kg."},
+    {"id": "FT-ESAR-SPORT", "category": "foot", "name": "High-performance sport foot", "k_min": "K4", "k_max": "K4", "weight_limit_kg": 125, "tags": ["sport", "high-impact"], "notes": "For K4 users with high-impact activities."},
+
+    {"id": "KN-LOCK", "category": "knee", "name": "Manual-locking knee", "k_min": "K1", "k_max": "K1", "weight_limit_kg": 125, "tags": ["max-stability"], "notes": "Locked in extension during gait; maximum stability, no swing-phase flexion."},
+    {"id": "KN-STANCE", "category": "knee", "name": "Weight-activated stance-control knee", "k_min": "K1", "k_max": "K2", "weight_limit_kg": 125, "tags": ["stability"], "notes": "Brakes under load; single-speed walkers."},
+    {"id": "KN-POLY", "category": "knee", "name": "Polycentric (4-bar) knee", "k_min": "K2", "k_max": "K3", "weight_limit_kg": 125, "tags": ["stability", "toe-clearance"], "notes": "Instantaneous centre of rotation gives stance stability and better toe clearance; good for long residual limbs / knee disarticulation."},
+    {"id": "KN-HYD", "category": "knee", "name": "Hydraulic swing-and-stance knee", "k_min": "K3", "k_max": "K4", "weight_limit_kg": 125, "tags": ["variable-cadence"], "notes": "Fluid control adapts to walking speed."},
+    {"id": "KN-MPK", "category": "knee", "name": "Microprocessor-controlled knee (MPK)", "k_min": "K3", "k_max": "K4", "weight_limit_kg": 125, "tags": ["variable-cadence", "stumble-recovery", "high-cost"], "notes": "Sensor-controlled resistance; stumble recovery, stairs/ramps. Reimbursement typically requires K3+ and demonstrated need. Requires charging and cognitive ability to manage the device."},
+    {"id": "KN-MPK-HD", "category": "knee", "name": "Microprocessor knee, heavy-duty", "k_min": "K3", "k_max": "K4", "weight_limit_kg": 150, "tags": ["variable-cadence", "heavy-duty", "high-cost"], "notes": "MPK rated to 150 kg."},
+
+    {"id": "LN-PIN", "category": "liner", "name": "Silicone liner with distal pin", "k_min": "K1", "k_max": "K4", "weight_limit_kg": 150, "tags": ["pin-lock"], "notes": "Pairs with shuttle lock. Distal pin can increase distal-end loading on very short limbs."},
+    {"id": "LN-SEAL", "category": "liner", "name": "Seal-in liner (suction)", "k_min": "K2", "k_max": "K4", "weight_limit_kg": 150, "tags": ["suction"], "notes": "Membrane seal for suction suspension; needs stable limb volume."},
+    {"id": "LN-CUSH", "category": "liner", "name": "Cushion gel liner (with sleeve)", "k_min": "K1", "k_max": "K3", "weight_limit_kg": 150, "tags": ["skin-protection"], "notes": "Extra cushioning for sensitive or scarred skin; used with a suspension sleeve."},
+
+    {"id": "SP-SHUTTLE", "category": "suspension", "name": "Shuttle lock (pin-lock)", "k_min": "K1", "k_max": "K4", "weight_limit_kg": 150, "tags": ["pin-lock", "easy-donning"], "notes": "Simple, robust, easy to don; some pistoning."},
+    {"id": "SP-SUCTION", "category": "suspension", "name": "Suction with one-way valve", "k_min": "K2", "k_max": "K4", "weight_limit_kg": 150, "tags": ["suction"], "notes": "Better limb control than pin-lock; needs stable volume and dexterity to don."},
+    {"id": "SP-VACUUM", "category": "suspension", "name": "Elevated vacuum", "k_min": "K3", "k_max": "K4", "weight_limit_kg": 150, "tags": ["volume-control", "high-cost"], "notes": "Active pump maintains negative pressure; best limb-volume stability; more maintenance."},
+    {"id": "SP-SLEEVE", "category": "suspension", "name": "Suspension sleeve", "k_min": "K1", "k_max": "K3", "weight_limit_kg": 150, "tags": ["simple"], "notes": "Elastomer sleeve over socket brim; adds suspension for short limbs or as auxiliary."},
+    {"id": "SP-BELT", "category": "suspension", "name": "TES belt / lanyard (auxiliary)", "k_min": "K1", "k_max": "K4", "weight_limit_kg": 180, "tags": ["auxiliary", "short-limb"], "notes": "Auxiliary suspension for short transfemoral limbs or when primary suspension is insufficient."},
+
+    {"id": "SK-PTB", "category": "socket", "name": "PTB (patellar tendon bearing) socket", "k_min": "K1", "k_max": "K4", "weight_limit_kg": 180, "tags": ["transtibial"], "notes": "Load on patellar tendon and tibial flares; classic transtibial design."},
+    {"id": "SK-TSB", "category": "socket", "name": "Total surface bearing socket", "k_min": "K1", "k_max": "K4", "weight_limit_kg": 180, "tags": ["transtibial", "liner-based"], "notes": "Even load distribution with gel liner; preferred for sensitive or scarred skin."},
+    {"id": "SK-IC", "category": "socket", "name": "Ischial containment socket", "k_min": "K1", "k_max": "K4", "weight_limit_kg": 180, "tags": ["transfemoral"], "notes": "Contains ischial tuberosity for medio-lateral stability; standard transfemoral design."},
+    {"id": "SK-SUBI", "category": "socket", "name": "Sub-ischial socket", "k_min": "K3", "k_max": "K4", "weight_limit_kg": 150, "tags": ["transfemoral", "comfort"], "notes": "Brim below ischium; comfort for active users with good limb length and musculature."},
+
+    {"id": "AFO-CARBON", "category": "afo", "name": "Carbon-fibre dynamic AFO (posterior leaf)", "k_min": "K2", "k_max": "K4", "weight_limit_kg": 120, "tags": ["drop-foot", "energy-return"], "notes": "For flaccid drop foot without significant spasticity or instability; lightweight, energy return."},
+    {"id": "AFO-SOLID", "category": "afo", "name": "Solid-ankle thermoplastic AFO", "k_min": "K1", "k_max": "K3", "weight_limit_kg": 150, "tags": ["drop-foot", "medio-lateral-control", "spasticity"], "notes": "Rigid ankle; controls spasticity and medio-lateral instability."},
+    {"id": "AFO-HINGED", "category": "afo", "name": "Hinged thermoplastic AFO with plantarflexion stop", "k_min": "K2", "k_max": "K4", "weight_limit_kg": 150, "tags": ["drop-foot", "dorsiflexion-free"], "notes": "Allows dorsiflexion for stairs/sit-to-stand; needs adequate calf control."},
+    {"id": "KAFO-STANCE", "category": "kafo", "name": "Stance-control KAFO", "k_min": "K2", "k_max": "K3", "weight_limit_kg": 130, "tags": ["quadriceps-weakness"], "notes": "Locks knee in stance, frees in swing; for quadriceps weakness with adequate hip strength."},
+    {"id": "KAFO-LOCK", "category": "kafo", "name": "Locked-knee KAFO (drop lock)", "k_min": "K1", "k_max": "K2", "weight_limit_kg": 150, "tags": ["max-stability"], "notes": "Knee locked in extension during gait."}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "case_id": "case_05_transfemoral_k3_heavy",
+  "title": "Heavy active transfemoral amputee — component weight rating must be checked",
+  "referral_text": "Patient P-5077, 41-year-old male, 138 kg, 192 cm. Right transfemoral amputation 3 years ago (trauma, industrial accident). Residual limb long, well muscled, healed, stable volume. Has used a prosthesis with a hydraulic knee for 2 years; walks unlimited community distances at variable speed, reports two falls last year on uneven ground. Works in construction site supervision, wants better stumble recovery. No diabetes, blood pressure normal, good cognition, comfortable with charging electronic devices.",
+  "expected": {
+    "amputation_level": "transfemoral",
+    "k_level": "K3",
+    "device_type": "transfemoral_prosthesis",
+    "knee_class": "microprocessor, heavy-duty",
+    "verdict": "approved",
+    "note": "A standard 125 kg MPK/foot would be a safety violation; the gate must force heavy-duty components."
+  }
+}

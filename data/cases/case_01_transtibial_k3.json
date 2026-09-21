@@ -1,0 +1,12 @@
+{
+  "case_id": "case_01_transtibial_k3",
+  "title": "Active transtibial amputee, community ambulator",
+  "referral_text": "Patient P-1041, 34-year-old male, 82 kg, 178 cm. Right transtibial amputation 14 months ago after a motorcycle accident. Residual limb medium length, well healed, good soft-tissue coverage, no skin breakdown. Has been walking with a temporary prosthesis (PTB socket, SACH foot) for 8 months; now walks unlimited distances in the community, uses stairs and ramps daily, wants to return to hiking and cycling on weekends. No diabetes, no cardiovascular disease. Motivated, good dexterity, lives independently. Requesting definitive prosthesis.",
+  "expected": {
+    "amputation_level": "transtibial",
+    "k_level": "K3",
+    "device_type": "transtibial_prosthesis",
+    "foot_class": "energy-storing",
+    "verdict": "approved"
+  }
+}

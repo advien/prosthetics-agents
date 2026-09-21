@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "prosthetics-agents"
+version = "0.1.0"
+description = "Multi-agent systems for prosthetics & orthotics: clinical fitting (CrewAI) -> fabrication (LangGraph) -> real-time control (AutoGen)"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "pydantic>=2.7",
+    "python-dotenv>=1.0",
+    "rich>=13.7",
+]
+
+[project.optional-dependencies]
+# Stage B — clinical fitting crew. Native provider SDKs are pulled in via CrewAI extras;
+# OpenAI-compatible endpoints (Groq, OpenRouter, Ollama, Workers AI, own VPS) need none.
+crewai = [
+    "crewai[anthropic,google-genai]>=1.15",
+]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.5",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["prosthetics_agents"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore::DeprecationWarning:crewai.*",
+    "ignore::DeprecationWarning:pydantic.*",
+]

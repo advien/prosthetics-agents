@@ -1,0 +1,12 @@
+{
+  "case_id": "case_02_transfemoral_k2_vascular",
+  "title": "Older transfemoral amputee, vascular etiology, limited community ambulator",
+  "referral_text": "Patient P-2210, 71-year-old female, 68 kg, 162 cm. Left transfemoral amputation 6 months ago due to peripheral arterial disease. Residual limb short (approx. 25% of femur), healed, some fragile skin over the distal end. Type 2 diabetes, well controlled (HbA1c 6.8%), mild hypertension. Currently ambulates with a walker indoors and short distances outside (to the mailbox, around the garden). Goal: walk safely at home and short community distances, avoid falls. Lives with her daughter. Some reduced grip strength in both hands.",
+  "expected": {
+    "amputation_level": "transfemoral",
+    "k_level": "K2",
+    "device_type": "transfemoral_prosthesis",
+    "knee_class": "stance-control or polycentric",
+    "verdict": "approved"
+  }
+}
