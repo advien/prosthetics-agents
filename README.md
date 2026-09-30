@@ -94,3 +94,7 @@ natively — which is why Stage C moves to it.
 - [ ] Stage B: HTML timeline / communication graph from `events.jsonl`
 - [ ] Stage C on LangGraph (scan → CAD → schedule → QA)
 - [ ] Stage A on AutoGen (simulated control loop + ML intent classifier service)
+
+## License
+
+[MIT](LICENSE)
