@@ -9,6 +9,8 @@ complexity — each on a different agent framework, each closer to the hardware:
 | **C** | Fabrication: 3D scan → parametric CAD → scheduling → QA | **LangGraph** | explicit state graph with a QA→CAD feedback edge, tool-use over files | planned |
 | **A** | Real-time prosthesis control (simulated EMG/IMU) | **AutoGen** | fast control loop with a safety supervisor on the command path, slow adaptation loop, a classical ML model as a tool | planned |
 
+![Stage B clinical fitting crew, stages C and A planned](docs/architecture.svg)
+
 Plan and comparison of the three directions: [docs/PLAN.md](docs/PLAN.md).
 Block diagrams (overview + one per stage): [docs/agent-blueprints.html](docs/agent-blueprints.html).
 External services, keys, and what is free: [CONNECTIONS.md](CONNECTIONS.md).
