@@ -1,6 +1,6 @@
 <svg viewBox="0 0 680 560" xmlns="http://www.w3.org/2000/svg" width="680" height="560" role="img" aria-labelledby="ttl dsc" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
 <title id="ttl">Prosthetics agents — stage B clinical fitting crew, with stages C and A planned</title>
-<desc id="dsc">A referral enters a five-agent crew: intake, biomechanics, recommendation, safety review and documentation. The safety agent is the only path to documentation; it checks component weight ratings and K-level ranges deterministically, sends the recommendation back with required changes through a bounded revision loop, or escalates to the clinical team. Stages C (fabrication on LangGraph) and A (real-time control on AutoGen) are shown as planned.</desc>
+<desc id="dsc">A referral enters a five-agent crew: intake, biomechanics, recommendation, safety review and documentation. The safety agent checks component weight ratings and K-level ranges deterministically, and either sends the recommendation back with required changes through a bounded revision loop, or reaches a final verdict. Documentation always runs on a final verdict; when the verdict is an escalation — red flags or an exhausted revision budget — the safety agent additionally notifies the clinical team and documentation adds an escalation note. Stages C (fabrication on LangGraph) and A (real-time control on AutoGen) are shown as planned.</desc>
 <style>
   :root{
     --card:#F4F2EC; --card-bd:#D3D1C7; --panel:#FAF9F5; --panel-bd:#E3E1D8;
@@ -68,18 +68,20 @@
 <path class="conn" d="M646,200 L664,200 L664,103 L650,103" marker-end="url(#arw)"/>
 <text class="t2 note" x="628" y="150" text-anchor="end">revise — concrete changes, bounded</text>
 
-<!-- escalate -->
-<path class="conn" d="M473,248 L473,286" marker-end="url(#arw)"/>
-<text class="t2 note" x="640" y="264" text-anchor="end">red flags → escalate</text>
-<rect class="node" x="466" y="288" width="180" height="46" rx="10"/>
-<text class="t" x="556" y="310" font-size="13" font-weight="700" text-anchor="middle">Clinical team</text>
-<text class="t2 note" x="556" y="326" text-anchor="middle">a human decides</text>
-
-<!-- documentation -->
+<!-- documentation: the one unconditional exit from the gate -->
 <rect class="node" x="246" y="288" width="180" height="46" rx="10"/>
 <text class="t" x="336" y="310" font-size="13" font-weight="700" text-anchor="middle">Documentation</text>
 <text class="t2 note" x="336" y="326" text-anchor="middle">verified record</text>
-<path class="conn" d="M400,248 L360,288" marker-end="url(#arw)"/>
+<path class="conn" d="M430,248 L430,268 L336,268 L336,288" marker-end="url(#arw)"/>
+
+<!-- escalate: a side notification on top of documentation, not instead of it -->
+<path class="dot" d="M556,248 L556,286" marker-end="url(#arw)"/>
+<text class="t2 note" x="646" y="264" text-anchor="end">escalate</text>
+<rect class="node" x="466" y="288" width="180" height="46" rx="10"/>
+<text class="t" x="556" y="310" font-size="13" font-weight="700" text-anchor="middle">Clinical team</text>
+<text class="t2 note" x="556" y="326" text-anchor="middle">notified, also</text>
+
+<text class="t2 note" x="340" y="357" text-anchor="middle">Documentation always runs — escalation only adds a note.</text>
 
 <!-- run log -->
 <rect class="panel" x="34" y="288" width="190" height="46" rx="10"/>
